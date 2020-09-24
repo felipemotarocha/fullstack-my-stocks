@@ -1,21 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from 'styled-components';
 
 import './index.css';
-import App from './App';
+import App from './App/App';
 
-const theme = createMuiTheme({
-	palette: {
-		primary: {
-			main: '#090909',
-		},
-		secondary: {
-			main: '#2a2a2a',
-		},
-	},
-});
+const theme = {
+	primary: '#090909',
+	secondary: '#181818',
+};
 
 ReactDOM.render(
 	<Router>

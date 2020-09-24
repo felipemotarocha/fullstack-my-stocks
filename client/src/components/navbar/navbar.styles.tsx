@@ -1,0 +1,24 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+	width: 100%;
+	height: 74px;
+
+	background: ${(props) => props.theme.primary};
+	color: #eee;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+`;
+
+export const Content = styled.div`
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	padding: 0 100px;
+`;
+
+export const Logo = styled.h1`
+	font-size: 2.3rem;
+	font-weight: 400;
+`;
