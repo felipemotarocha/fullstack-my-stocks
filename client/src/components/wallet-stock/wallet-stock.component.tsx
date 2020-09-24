@@ -23,11 +23,11 @@ const WalletStock: React.FunctionComponent<WalletStockProps> = ({
 				<h3>{companyName}</h3>
 			</Header>
 			<Footer>
-				${latestPrice}
+				${(Math.round(latestPrice * 100) / 100).toFixed(2)}
 				<Change change={change}>
 					<p>
 						{change > 0 ? '+' : '-'}
-						{change}%
+						{(Math.round(change * 100) / 100).toFixed(2)}%
 					</p>
 				</Change>
 			</Footer>

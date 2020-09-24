@@ -9,12 +9,16 @@ export interface WalletProps {}
 const Wallet: React.FunctionComponent<WalletProps> = () => {
 	const [quote, setQuote] = React.useState<any>();
 	const fetchAAPL = async () => {
-		const {
-			data: { quote },
-		} = await axios.get(
-			'https://cloud.iexapis.com/stable/stock/AAPL/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote,news'
-		);
-		setQuote(quote);
+		try {
+			const {
+				data: { quote },
+			} = await axios.get(
+				'https://cloud.iexapis.com/stable/stock/AAPL/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote,news'
+			);
+			setQuote(quote);
+		} catch (error) {
+			alert('Error!');
+		}
 	};
 
 	React.useEffect(() => {

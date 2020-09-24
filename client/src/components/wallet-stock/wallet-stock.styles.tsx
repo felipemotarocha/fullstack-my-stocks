@@ -8,8 +8,8 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	height: 170px;
-	width: 170px;
+	height: 180px;
+	min-width: 180px;
 	border-radius: 10px;
 	background: ${(props) => props.theme.primary};
 `;
@@ -25,14 +25,15 @@ export const Header = styled.div<ChangeProps>`
 
 	h2 {
 		font-weight: 400;
-		font-size: 2.7rem;
+		font-size: 2.8rem;
 		letter-spacing: 2px;
 	}
 
 	h3 {
 		font-weight: 100;
-		font-size: 1.4rem;
-		margin-top: -0.6rem;
+		font-size: 1.5rem;
+		margin-top: -0.4rem;
+		line-height: 1.5rem;
 	}
 `;
 
