@@ -14,6 +14,11 @@ export const Container = styled.div`
 	background: ${(props) => props.theme.primary};
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
 		0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+	&:nth-child(even) {
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
 `;
 
 export const Header = styled.div<ChangeProps>`

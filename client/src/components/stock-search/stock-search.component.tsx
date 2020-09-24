@@ -5,9 +5,20 @@ import AddIcon from '@material-ui/icons/Add';
 
 import { Container } from './stock-search.styles';
 
-export interface StockSearchProps {}
+export interface StockSearchProps {
+	fetchStock: (symbol: string) => Promise<void>;
+}
 
-const StockSearch: React.FunctionComponent<StockSearchProps> = () => {
+const StockSearch: React.FunctionComponent<StockSearchProps> = ({
+	fetchStock,
+}) => {
+	const [symbol, setSymbol] = React.useState<string>('');
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+		setSymbol(event.target.value);
+
+	const handleSubmit = () => fetchStock(symbol);
+
 	return (
 		<Container>
 			<TextField
@@ -15,12 +26,15 @@ const StockSearch: React.FunctionComponent<StockSearchProps> = () => {
 				variant='outlined'
 				label='Add a stock'
 				color='primary'
+				value={symbol}
+				onChange={handleChange}
 			/>
 			<Button
 				variant='contained'
 				color='primary'
 				style={{ height: '100%', marginLeft: '0.3rem' }}
 				startIcon={<AddIcon />}
+				onClick={handleSubmit}
 			>
 				Add
 			</Button>
