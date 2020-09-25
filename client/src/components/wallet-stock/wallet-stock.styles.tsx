@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-interface ChangeProps {
-	change: number;
+interface ChangePercentProps {
+	changePercent: number;
 }
 
 export const Container = styled.div`
@@ -21,14 +21,14 @@ export const Container = styled.div`
 	}
 `;
 
-export const Header = styled.div<ChangeProps>`
+export const Header = styled.div<ChangePercentProps>`
 	display: flex;
 	flex-flow: wrap;
 	flex-direction: column;
 	padding: 20px;
 
 	border-bottom: 2px solid
-		${({ change }) => (change > 0 ? '#32CD32' : '#FF0000')};
+		${({ changePercent }) => (changePercent > 0 ? '#32CD32' : '#FF0000')};
 
 	h2 {
 		font-weight: 400;
@@ -51,6 +51,6 @@ export const Footer = styled.div`
 	padding: 10px 20px;
 `;
 
-export const Change = styled.div<ChangeProps>`
-	color: ${({ change }) => (change > 0 ? '#32CD32' : 'red')};
+export const Change = styled.div<ChangePercentProps>`
+	color: ${({ changePercent }) => (changePercent > 0 ? '#32CD32' : 'red')};
 `;

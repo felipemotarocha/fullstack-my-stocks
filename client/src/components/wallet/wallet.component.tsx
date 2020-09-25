@@ -9,7 +9,7 @@ type StocksState = {
 	symbol: string;
 	companyName: string;
 	latestPrice: number;
-	change: number;
+	changePercent: number;
 	primaryExchange: string;
 }[];
 
@@ -23,6 +23,8 @@ const Wallet: React.FunctionComponent = () => {
 			} = await axios.get(
 				`https://cloud.iexapis.com/stable/stock/${symbol}/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote,news`
 			);
+
+			console.log(quote);
 
 			setStocks([...stocks, quote]);
 		} catch (error) {
@@ -41,7 +43,7 @@ const Wallet: React.FunctionComponent = () => {
 								symbol,
 								companyName,
 								latestPrice,
-								change,
+								changePercent,
 								primaryExchange,
 							}) => (
 								<WalletStock
@@ -49,7 +51,7 @@ const Wallet: React.FunctionComponent = () => {
 									symbol={symbol}
 									companyName={companyName}
 									latestPrice={latestPrice}
-									change={change}
+									changePercent={changePercent * 100}
 									primaryExchange={primaryExchange}
 								/>
 							)

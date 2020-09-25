@@ -5,29 +5,29 @@ export interface WalletStockProps {
 	symbol: string;
 	companyName: string;
 	latestPrice: number;
-	change: number;
+	changePercent: number;
 	primaryExchange: string;
 }
 
 const WalletStock: React.FunctionComponent<WalletStockProps> = ({
 	symbol,
 	companyName,
-	change,
+	changePercent,
 	latestPrice,
 	primaryExchange,
 }) => {
 	return (
 		<Container>
-			<Header change={change}>
+			<Header changePercent={changePercent}>
 				<h2>{symbol}</h2>
 				<h3>{companyName}</h3>
 			</Header>
 			<Footer>
 				${(Math.round(latestPrice * 100) / 100).toFixed(2)}
-				<Change change={change}>
+				<Change changePercent={changePercent}>
 					<p>
-						{change > 0 ? '+' : '-'}
-						{(Math.round(change * 100) / 100).toFixed(2)}%
+						{changePercent > 0 ? '+' : '-'}
+						{(Math.round(changePercent * 100) / 100).toFixed(2)}%
 					</p>
 				</Change>
 			</Footer>
