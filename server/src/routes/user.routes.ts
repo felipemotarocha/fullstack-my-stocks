@@ -5,20 +5,28 @@ import { User } from '../entity/User';
 import hashPassword from '../utils/hashPassword';
 import generateAuthToken from '../utils/generateAuthToken';
 import verifyPassword from '../utils/verifyPassword';
+import auth from '../middlewares/auth';
 
 const router = Router();
 
 createConnection().then((connection) => {
 	const userRepository = connection.getRepository(User);
 
-	router.get('/', async (_req: Request, res: Response) => {
-		const users = await userRepository.find();
-		res.send(users);
+	router.get('/', auth, async (req: Request, res: Response) => {
+		try {
+			res.send(req.user);
+		} catch (err) {
+			res.status(401).send(err.message);
+		}
 	});
 
 	router.get('/:id', async (req: Request, res: Response) => {
-		const user = await userRepository.findOne(req.params.id);
-		res.send(user);
+		try {
+			const user = await userRepository.findOne(req.params.id);
+			res.send(user);
+		} catch (err) {
+			res.status(500).send(err.message);
+		}
 	});
 
 	router.post('/', async (req: Request, res: Response) => {
@@ -50,9 +58,8 @@ createConnection().then((connection) => {
 				throw new Error('Something went wrong');
 
 			const token = await generateAuthToken(user.id);
-			console.log(token);
 
-			return res.send(user);
+			return res.send({ user, token });
 		} catch (err) {
 			return res.status(500).send(err.message);
 		}
