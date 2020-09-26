@@ -4,6 +4,7 @@ import { createConnection } from 'typeorm';
 
 import { User } from './entity/User';
 import hashPassword from '../utils/hashPassword';
+import verifyPassword from '../utils/verifyPassword';
 
 createConnection().then((connection) => {
 	const userRepository = connection.getRepository(User);
@@ -37,16 +38,20 @@ createConnection().then((connection) => {
 
 	app.post('/login', async (req: Request, res: Response) => {
 		try {
+			const { email, password } = req.body;
+
 			const user = await userRepository
 				.createQueryBuilder()
 				.select('user')
 				.from(User, 'user')
-				.where('user.email = :email', { email: req.body.email })
+				.where('user.email = :email', { email })
 				.getOne();
 
-			if (!user) throw new Error('User not found!');
+			if (!user) throw new Error('Something went wrong.');
 
-			return res.send(user);
+			if (await verifyPassword(password, user.password))
+				return res.send(user);
+			else throw new Error('Something went wrong.');
 		} catch (err) {
 			return res.status(500).send(err.message);
 		}
