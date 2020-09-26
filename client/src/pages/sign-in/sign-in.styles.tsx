@@ -17,7 +17,7 @@ export const Content = styled.div`
 	h2 {
 		font-size: 2.2rem;
 		font-weight: normal;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 	}
 
 	.MuiFormControl-root {
