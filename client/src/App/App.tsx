@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Navbar from '../components/navbar/navbar.component';
 import HomePage from '../pages/home/home.page';
+import SignIn from '../pages/sign-in/sign-in.page';
 import { Container } from './App.styles';
 
 const App: React.FunctionComponent = () => {
@@ -10,9 +11,8 @@ const App: React.FunctionComponent = () => {
 		<Container>
 			<Navbar />
 			<Switch>
-				<Route path='/'>
-					<HomePage />
-				</Route>
+				<Route exact path='/' component={HomePage} />
+				<Route exact path='/sign-in' component={SignIn} />
 			</Switch>
 		</Container>
 	);

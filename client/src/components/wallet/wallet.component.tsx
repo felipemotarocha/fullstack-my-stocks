@@ -21,7 +21,7 @@ const Wallet: React.FunctionComponent = () => {
 			const {
 				data: { quote },
 			} = await axios.get(
-				`https://cloud.iexapis.com/stable/stock/${symbol}/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote,news`
+				`https://cloud.iexapis.com/stable/stock/${symbol}/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote`
 			);
 
 			console.log(quote);

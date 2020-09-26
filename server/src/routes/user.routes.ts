@@ -41,6 +41,14 @@ createConnection().then((connection) => {
 		}
 	});
 
+	// router.post('/', async (req: Request, res: Response) => {
+	// 	try {
+	// 		await userRepository.createQueryBuilder().update(User)
+	// 	} catch (err) {
+	// 		res.status(500).send(err.message)
+	// 	}
+	// })
+
 	router.post('/login', async (req: Request, res: Response) => {
 		try {
 			const { email, password } = req.body;
