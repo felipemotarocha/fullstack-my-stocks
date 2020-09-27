@@ -7,7 +7,7 @@ import SignInPage from './sign-in.page';
 export interface SignInContainerProps {}
 
 const SignInContainer: React.FunctionComponent<SignInContainerProps> = () => {
-	const { changeUser } = useContext(UserContext);
+	const { changeUser, checkUserSession } = useContext(UserContext);
 	const signInUser = async (email: string, password: string) => {
 		const {
 			data: { user, token },
@@ -20,7 +20,12 @@ const SignInContainer: React.FunctionComponent<SignInContainerProps> = () => {
 		localStorage.setItem('authToken', token);
 	};
 
-	return <SignInPage signInUser={signInUser} />;
+	return (
+		<SignInPage
+			signInUser={signInUser}
+			checkUserSession={checkUserSession}
+		/>
+	);
 };
 
 export default SignInContainer;
