@@ -5,6 +5,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import './index.css';
 import App from './App/App';
+import UserContextProvider from './contexts/user/user.context';
 
 const theme = createMuiTheme({
 	palette: {
@@ -20,7 +21,9 @@ const theme = createMuiTheme({
 ReactDOM.render(
 	<Router>
 		<ThemeProvider theme={theme}>
-			<App />
+			<UserContextProvider>
+				<App />
+			</UserContextProvider>
 		</ThemeProvider>
 	</Router>,
 	document.getElementById('root')
