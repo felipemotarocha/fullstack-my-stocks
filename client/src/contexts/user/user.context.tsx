@@ -10,7 +10,7 @@ export type User = {
 
 interface ContextProps {
 	user: User | null;
-	changeUser: (value: User) => void;
+	changeUser: (value: User | null) => void;
 	checkUserSession: () => Promise<void> | void;
 }
 
@@ -29,7 +29,7 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 }) => {
 	const [user, setUser] = useState<User | null>(null);
 
-	const changeUser = (value: User) => {
+	const changeUser = (value: User | null) => {
 		setUser(value);
 	};
 
@@ -43,8 +43,7 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 				},
 			});
 
-			console.log(data);
-			return data;
+			setUser(data);
 		} catch (err) {
 			setUser(null);
 			localStorage.removeItem('authToken');

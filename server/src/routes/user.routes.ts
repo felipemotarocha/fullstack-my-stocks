@@ -14,7 +14,13 @@ createConnection().then((connection) => {
 
 	router.get('/', auth, async (req: Request, res: Response) => {
 		try {
-			res.send(req.user);
+			res.send({
+				id: req.user.id,
+				firstName: req.user.firstName,
+				lastName: req.user.lastName,
+				email: req.user.email,
+				stocks: req.user.stocks,
+			});
 		} catch (err) {
 			res.status(401).send(err.message);
 		}

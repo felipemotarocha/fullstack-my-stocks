@@ -24,12 +24,9 @@ const Wallet: React.FunctionComponent = () => {
 				`https://cloud.iexapis.com/stable/stock/${symbol}/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote`
 			);
 
-			console.log(quote);
-
 			setStocks([...stocks, quote]);
 		} catch (error) {
-			console.log(error.message);
-			alert('Error!');
+			alert('Something went wrong.');
 		}
 	};
 
