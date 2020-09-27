@@ -67,7 +67,16 @@ createConnection().then((connection) => {
 
 			const token = await generateAuthToken(user.id);
 
-			return res.send({ user, token });
+			return res.send({
+				user: {
+					id: user.id,
+					firstName: user.firstName,
+					lastName: user.lastName,
+					email: user.email,
+					stocks: user.stocks,
+				},
+				token,
+			});
 		} catch (err) {
 			return res.status(500).send(err.message);
 		}

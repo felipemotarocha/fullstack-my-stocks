@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Navbar from '../components/navbar/navbar.component';
 import HomePage from '../pages/home/home.page';
-import SignIn from '../pages/sign-in/sign-in.page';
+import { default as SignIn } from '../pages/sign-in/sign-in.container';
 import { Container } from './App.styles';
 
 const App: React.FunctionComponent = () => {
