@@ -14,12 +14,26 @@ createConnection().then((connection) => {
 
 	router.get('/', auth, async (req: Request, res: Response) => {
 		try {
+			const {
+				id,
+				firstName,
+				lastName,
+				email,
+				stocks,
+			}: {
+				id: number;
+				firstName: string;
+				lastName: string;
+				email: string;
+				stocks: string[];
+			} = req.user;
+
 			res.send({
-				id: req.user.id,
-				firstName: req.user.firstName,
-				lastName: req.user.lastName,
-				email: req.user.email,
-				stocks: req.user.stocks,
+				id: id,
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				stocks: stocks,
 			});
 		} catch (err) {
 			res.status(401).send(err.message);
@@ -49,11 +63,15 @@ createConnection().then((connection) => {
 
 	router.post('/:id/add-stock', async (req: Request, res: Response) => {
 		try {
+			const { stock }: { stock: string } = req.body;
+
 			const user = await userRepository.findOne(req.params.id);
-			user!.stocks = [...user!.stocks, req.body.stock];
+
+			if (user?.stocks.includes(stock.toUpperCase()))
+				throw new Error('You already have this stock.');
+			else user!.stocks = [...user!.stocks, stock.toUpperCase()];
 
 			const results = await userRepository.save(user!);
-
 			res.send(results);
 		} catch (err) {
 			res.status(500).send(err.message);
@@ -62,7 +80,10 @@ createConnection().then((connection) => {
 
 	router.post('/login', async (req: Request, res: Response) => {
 		try {
-			const { email, password } = req.body;
+			const {
+				email,
+				password,
+			}: { email: string; password: string } = req.body;
 
 			const user = await userRepository
 				.createQueryBuilder()
