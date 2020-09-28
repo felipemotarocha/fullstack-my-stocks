@@ -1,41 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 
 import { Container } from './wallet.styles';
 import WalletStock from '../wallet-stock/wallet-stock.component';
 import StockSearch from '../stock-search/stock-search.component';
-
-type StocksState = {
-	symbol: string;
-	companyName: string;
-	latestPrice: number;
-	changePercent: number;
-	primaryExchange: string;
-}[];
+import { UserContext } from '../../contexts/user/user.context';
 
 const Wallet: React.FunctionComponent = () => {
-	const [stocks, setStocks] = React.useState<StocksState | null>([]);
+	const { user, addStock } = useContext(UserContext);
 
-	const fetchStock = async (symbol: string) => {
-		try {
-			const {
-				data: { quote },
-			} = await axios.get(
-				`https://cloud.iexapis.com/stable/stock/${symbol}/batch?last=10&token=sk_7077e804569242739bde723e7679aad5&types=quote`
-			);
-
-			setStocks([...stocks, quote]);
-		} catch (error) {
-			alert('Something went wrong.');
-		}
-	};
+	useEffect(() => {
+		console.log(user);
+	}, [user]);
 
 	return (
 		<>
-			<StockSearch fetchStock={fetchStock} />
-			<Container>
-				{stocks
-					? stocks.map(
+			<StockSearch fetchStock={addStock} />
+			{/* <Container>
+				{user!.stocks
+					? user!.stocks.map(
 							({
 								symbol,
 								companyName,
@@ -54,7 +37,7 @@ const Wallet: React.FunctionComponent = () => {
 							)
 					  )
 					: null}
-			</Container>
+			</Container> */}
 		</>
 	);
 };

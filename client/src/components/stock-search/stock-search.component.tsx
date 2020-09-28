@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { Container } from './stock-search.styles';
 
 export interface StockSearchProps {
-	fetchStock: (symbol: string) => Promise<void>;
+	fetchStock: (symbol: string) => Promise<void> | void;
 }
 
 const StockSearch: React.FunctionComponent<StockSearchProps> = ({
