@@ -47,13 +47,18 @@ createConnection().then((connection) => {
 		}
 	});
 
-	// router.post('/', async (req: Request, res: Response) => {
-	// 	try {
-	// 		await userRepository.createQueryBuilder().update(User)
-	// 	} catch (err) {
-	// 		res.status(500).send(err.message)
-	// 	}
-	// })
+	router.post('/:id/add-stock', async (req: Request, res: Response) => {
+		try {
+			const user = await userRepository.findOne(req.params.id);
+			user!.stocks = [...user!.stocks, req.body.stock];
+
+			const results = await userRepository.save(user!);
+
+			res.send(results);
+		} catch (err) {
+			res.status(500).send(err.message);
+		}
+	});
 
 	router.post('/login', async (req: Request, res: Response) => {
 		try {
