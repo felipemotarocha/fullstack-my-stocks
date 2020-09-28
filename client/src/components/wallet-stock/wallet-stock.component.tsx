@@ -26,7 +26,7 @@ const WalletStock: React.FunctionComponent<WalletStockProps> = ({
 				${(Math.round(latestPrice * 100) / 100).toFixed(2)}
 				<Change changePercent={changePercent}>
 					<p>
-						{changePercent > 0 ? '+' : '-'}
+						{changePercent > 0 ? '+' : ''}
 						{(Math.round(changePercent * 100) / 100).toFixed(2)}%
 					</p>
 				</Change>

@@ -11,7 +11,7 @@ export type User = {
 interface ContextProps {
 	user: User | null;
 	changeUser: (value: User | null) => void;
-	checkUserSession: () => Promise<void> | void;
+	checkUserSession: () => Promise<boolean> | void;
 }
 
 export const UserContext = createContext<ContextProps>({
@@ -33,7 +33,7 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 		setUser(value);
 	};
 
-	const checkUserSession = async () => {
+	const checkUserSession = async (redirect?: boolean) => {
 		const token = localStorage.getItem('authToken');
 
 		try {
@@ -44,9 +44,11 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 			});
 
 			setUser(data);
+			return true;
 		} catch (err) {
 			setUser(null);
 			localStorage.removeItem('authToken');
+			return false;
 		}
 	};
 

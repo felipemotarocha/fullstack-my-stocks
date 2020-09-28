@@ -9,15 +9,19 @@ export interface SignInContainerProps {}
 const SignInContainer: React.FunctionComponent<SignInContainerProps> = () => {
 	const { changeUser, checkUserSession } = useContext(UserContext);
 	const signInUser = async (email: string, password: string) => {
-		const {
-			data: { user, token },
-		} = await axios.post('http://localhost:5000/users/login', {
-			email,
-			password,
-		});
+		try {
+			const {
+				data: { user, token },
+			} = await axios.post('http://localhost:5000/users/login', {
+				email,
+				password,
+			});
 
-		changeUser(user);
-		localStorage.setItem('authToken', token);
+			changeUser(user);
+			localStorage.setItem('authToken', token);
+		} catch (err) {
+			alert('Something went wrong. Check the data and try again.');
+		}
 	};
 
 	return (

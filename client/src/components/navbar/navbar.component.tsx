@@ -20,13 +20,24 @@ const Navbar: React.FunctionComponent<NavbarProps> = () => {
 			<Content>
 				<Logo onClick={() => history.push('/')}>MYStocks</Logo>
 				<Buttons>
-					<Button
-						variant='contained'
-						color='primary'
-						onClick={() => history.push('/sign-in')}
-					>
-						{user ? user.firstName : 'Sign In'}
-					</Button>
+					{user ? (
+						<Button variant='contained' color='primary'>
+							{user.firstName}
+						</Button>
+					) : (
+						<Button
+							variant='contained'
+							color='primary'
+							onClick={
+								!user
+									? () => history.push('/sign-in')
+									: () => {}
+							}
+						>
+							Sign In
+						</Button>
+					)}
+
 					{user ? (
 						<Button
 							variant='contained'
