@@ -6,18 +6,18 @@ import AddIcon from '@material-ui/icons/Add';
 import { Container } from './stock-search.styles';
 
 export interface StockSearchProps {
-	fetchStock: (symbol: string) => Promise<void> | void;
+	addStock: (symbol: string) => Promise<void> | void;
 }
 
 const StockSearch: React.FunctionComponent<StockSearchProps> = ({
-	fetchStock,
+	addStock,
 }) => {
 	const [symbol, setSymbol] = React.useState<string>('');
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
 		setSymbol(event.target.value);
 
-	const handleSubmit = () => fetchStock(symbol);
+	const handleSubmit = () => addStock(symbol);
 
 	return (
 		<Container>

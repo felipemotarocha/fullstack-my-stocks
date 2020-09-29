@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { Container, Stocks } from './wallet.styles';
+import { Container, Stocks, Actions } from './wallet.styles';
 import WalletStock from '../wallet-stock/wallet-stock.component';
-import StockSearch from '../stock-search/stock-search.component';
-import { UserContext } from '../../contexts/user/user.context';
+
+import { default as StockActions } from '../stock-actions/stock-actions.container';
 
 interface WalletProps {
 	stocks: {
@@ -19,11 +19,11 @@ interface WalletProps {
 }
 
 const Wallet: React.FunctionComponent<WalletProps> = ({ stocks }) => {
-	const { addStock } = useContext(UserContext);
-
 	return (
 		<Container>
-			<StockSearch fetchStock={addStock} />
+			<Actions>
+				<StockActions />
+			</Actions>
 			<Stocks>
 				{stocks
 					? stocks.map(
