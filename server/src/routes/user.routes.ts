@@ -113,6 +113,23 @@ createConnection().then((connection) => {
 			return res.status(500).send(err.message);
 		}
 	});
+
+	router.patch(
+		'/:userId/remove-stock/:stock',
+		async (req: Request, res: Response) => {
+			try {
+				const user = await userRepository.findOne(req.params.userId);
+				user!.stocks = user?.stocks.filter(
+					(stock) => stock !== req.params.stock
+				) as string[];
+
+				const result = await userRepository.save(user!);
+				res.send(result);
+			} catch (err) {
+				res.status(500).send(err.message);
+			}
+		}
+	);
 });
 
 export default router;
