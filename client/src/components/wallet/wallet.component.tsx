@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { Container } from './wallet.styles';
 import WalletStock from '../wallet-stock/wallet-stock.component';
@@ -20,10 +20,6 @@ interface WalletProps {
 
 const Wallet: React.FunctionComponent<WalletProps> = ({ stocks }) => {
 	const { addStock } = useContext(UserContext);
-
-	useEffect(() => {
-		console.log(stocks);
-	}, [stocks]);
 
 	return (
 		<>
