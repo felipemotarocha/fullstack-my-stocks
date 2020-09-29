@@ -52,12 +52,15 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 					}
 				);
 
-				setUser((prevUser) => {
-					return {
-						...prevUser,
-						stocks: [...prevUser?.stocks, symbol],
-					} as any;
-				});
+				setUser({ ...user, stocks: [...user?.stocks, symbol] } as any);
+
+				// setUser((prevUser) => {
+				// 	return {
+				// 		...prevUser,
+				// 		stocks: [...prevUser?.stocks, symbol],
+				// 	} as any;
+				// });
+				console.log(user);
 			}
 		} catch (err) {
 			console.log(err);

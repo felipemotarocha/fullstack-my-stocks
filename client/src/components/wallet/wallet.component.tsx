@@ -1,30 +1,44 @@
 import React, { useContext, useEffect } from 'react';
-import axios from 'axios';
 
 import { Container } from './wallet.styles';
 import WalletStock from '../wallet-stock/wallet-stock.component';
 import StockSearch from '../stock-search/stock-search.component';
 import { UserContext } from '../../contexts/user/user.context';
 
-const Wallet: React.FunctionComponent = () => {
-	const { user, addStock } = useContext(UserContext);
+interface WalletProps {
+	stocks: {
+		stock: string;
+		quote: {
+			changePercent: number;
+			companyName: string;
+			symbol: string;
+			primaryExchange: string;
+			latestPrice: number;
+		};
+	}[];
+}
+
+const Wallet: React.FunctionComponent<WalletProps> = ({ stocks }) => {
+	const { addStock } = useContext(UserContext);
 
 	useEffect(() => {
-		console.log(user);
-	}, [user]);
+		console.log(stocks);
+	}, [stocks]);
 
 	return (
 		<>
 			<StockSearch fetchStock={addStock} />
-			{/* <Container>
-				{user!.stocks
-					? user!.stocks.map(
+			<Container>
+				{stocks
+					? stocks.map(
 							({
-								symbol,
-								companyName,
-								latestPrice,
-								changePercent,
-								primaryExchange,
+								quote: {
+									symbol,
+									companyName,
+									latestPrice,
+									changePercent,
+									primaryExchange,
+								},
 							}) => (
 								<WalletStock
 									key={symbol}
@@ -37,7 +51,7 @@ const Wallet: React.FunctionComponent = () => {
 							)
 					  )
 					: null}
-			</Container> */}
+			</Container>
 		</>
 	);
 };
