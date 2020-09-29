@@ -4,6 +4,10 @@ interface ChangePercentProps {
 	changePercent: number;
 }
 
+interface ActionsProps {
+	editable: boolean;
+}
+
 export const Container = styled.div`
 	display: flex;
 	justify-content: center;
@@ -17,6 +21,23 @@ export const Container = styled.div`
 	margin-right: 0.8rem;
 	margin-bottom: 0.5rem;
 	box-shadow: 0 2px 10px 0 rgba(136, 136, 136, 0.77);
+	position: relative;
+`;
+
+export const Actions = styled.div<ActionsProps>`
+	position: absolute;
+	display: ${({ editable }) => (editable ? 'flex' : 'none')};
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+
+	.MuiIconButton-label {
+		color: #ff0000;
+	}
 `;
 
 export const Header = styled.div<ChangePercentProps>`
@@ -51,5 +72,6 @@ export const Footer = styled.div`
 `;
 
 export const Change = styled.div<ChangePercentProps>`
-	color: ${({ changePercent }) => (changePercent > 0 ? '#32CD32' : 'red')};
+	color: ${({ changePercent }) =>
+		changePercent > 0 ? '#32CD32' : '#FF0000'};
 `;

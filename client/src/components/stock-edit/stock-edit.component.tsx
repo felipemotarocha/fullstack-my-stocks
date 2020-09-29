@@ -4,9 +4,13 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { Container } from './stock-edit.styles';
 
-export interface StockEditProps {}
+export interface StockEditProps {
+	toggleEditable: () => void;
+}
 
-const StockEdit: React.SFC<StockEditProps> = () => {
+const StockEdit: React.FunctionComponent<StockEditProps> = ({
+	toggleEditable,
+}) => {
 	return (
 		<Container>
 			<Button
@@ -14,6 +18,7 @@ const StockEdit: React.SFC<StockEditProps> = () => {
 				color='primary'
 				style={{ marginLeft: '0.3rem', height: '100%' }}
 				startIcon={<EditIcon />}
+				onClick={toggleEditable}
 			>
 				Edit
 			</Button>

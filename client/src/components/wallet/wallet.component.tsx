@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { Container, Stocks, Actions } from './wallet.styles';
 import WalletStock from '../wallet-stock/wallet-stock.component';
+import { default as StockSearch } from '../stock-search/stock-search.container';
+import { default as StockEdit } from '../stock-edit/stock-edit.container';
 
-import { default as StockActions } from '../stock-actions/stock-actions.container';
+import { Container, Stocks, Actions } from './wallet.styles';
 
 interface WalletProps {
 	stocks: {
@@ -22,7 +23,8 @@ const Wallet: React.FunctionComponent<WalletProps> = ({ stocks }) => {
 	return (
 		<Container>
 			<Actions>
-				<StockActions />
+				<StockSearch />
+				<StockEdit />
 			</Actions>
 			<Stocks>
 				{stocks
