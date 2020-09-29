@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { Container } from './wallet.styles';
+import { Container, Stocks } from './wallet.styles';
 import WalletStock from '../wallet-stock/wallet-stock.component';
 import StockSearch from '../stock-search/stock-search.component';
 import { UserContext } from '../../contexts/user/user.context';
@@ -22,9 +22,9 @@ const Wallet: React.FunctionComponent<WalletProps> = ({ stocks }) => {
 	const { addStock } = useContext(UserContext);
 
 	return (
-		<>
+		<Container>
 			<StockSearch fetchStock={addStock} />
-			<Container>
+			<Stocks>
 				{stocks
 					? stocks.map(
 							({
@@ -47,8 +47,8 @@ const Wallet: React.FunctionComponent<WalletProps> = ({ stocks }) => {
 							)
 					  )
 					: null}
-			</Container>
-		</>
+			</Stocks>
+		</Container>
 	);
 };
 

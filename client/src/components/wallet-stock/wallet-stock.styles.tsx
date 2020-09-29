@@ -8,17 +8,15 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	height: 180px;
-	min-width: 180px;
+	height: 200px;
+	min-width: 200px;
+	max-width: 200px;
 	border-radius: 10px;
-	background: #090909;
-	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-		0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-	&:nth-child(even) {
-		margin-left: 1rem;
-		margin-right: 1rem;
-	}
+	background: #1a1a1a;
+	margin-top: 0.5rem;
+	margin-right: 0.8rem;
+	margin-bottom: 0.5rem;
+	box-shadow: 0 2px 10px 0 rgba(136, 136, 136, 0.77);
 `;
 
 export const Header = styled.div<ChangePercentProps>`
@@ -26,6 +24,7 @@ export const Header = styled.div<ChangePercentProps>`
 	flex-flow: wrap;
 	flex-direction: column;
 	padding: 20px;
+	overflow: hidden;
 
 	border-bottom: 2px solid
 		${({ changePercent }) => (changePercent > 0 ? '#32CD32' : '#FF0000')};

@@ -10,7 +10,7 @@ import UserContextProvider from './contexts/user/user.context';
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: '#090909',
+			main: '#1a1a1a',
 		},
 		secondary: {
 			main: '#181818',

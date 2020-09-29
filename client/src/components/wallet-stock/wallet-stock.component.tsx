@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Container, Header, Change, Footer } from './wallet-stock.styles';
+import Truncate from 'react-truncate';
 
 export interface WalletStockProps {
 	symbol: string;
@@ -20,7 +21,9 @@ const WalletStock: React.FunctionComponent<WalletStockProps> = ({
 		<Container>
 			<Header changePercent={changePercent}>
 				<h2>{symbol}</h2>
-				<h3>{companyName}</h3>
+				<Truncate lines={1} ellipsis='...'>
+					<h3>{companyName}</h3>
+				</Truncate>
 			</Header>
 			<Footer>
 				${(Math.round(latestPrice * 100) / 100).toFixed(2)}
