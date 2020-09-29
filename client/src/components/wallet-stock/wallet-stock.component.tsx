@@ -10,7 +10,6 @@ import {
 	Footer,
 	Actions,
 } from './wallet-stock.styles';
-import { StockContext } from '../../contexts/stock/stock.context';
 
 export interface WalletStockProps {
 	symbol: string;
@@ -18,6 +17,8 @@ export interface WalletStockProps {
 	latestPrice: number;
 	changePercent: number;
 	primaryExchange: string;
+	editable: boolean;
+	removeStock: (symbol: string) => void;
 }
 
 const WalletStock: React.FunctionComponent<WalletStockProps> = ({
@@ -26,9 +27,9 @@ const WalletStock: React.FunctionComponent<WalletStockProps> = ({
 	changePercent,
 	latestPrice,
 	primaryExchange,
+	editable,
+	removeStock,
 }) => {
-	const { editable } = React.useContext(StockContext);
-
 	return (
 		<Container>
 			<Actions editable={editable}>
@@ -36,6 +37,7 @@ const WalletStock: React.FunctionComponent<WalletStockProps> = ({
 					variant='contained'
 					color='secondary'
 					startIcon={<DeleteIcon />}
+					onClick={() => removeStock(symbol)}
 				>
 					DELETE
 				</Button>

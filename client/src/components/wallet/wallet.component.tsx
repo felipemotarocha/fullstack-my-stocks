@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WalletStock from '../wallet-stock/wallet-stock.component';
+import { default as WalletStock } from '../wallet-stock/wallet-stock.container';
 import { default as StockSearch } from '../stock-search/stock-search.container';
 import { default as StockEdit } from '../stock-edit/stock-edit.container';
 

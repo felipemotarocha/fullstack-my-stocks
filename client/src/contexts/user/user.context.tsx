@@ -14,6 +14,7 @@ interface ContextProps {
 	changeUser: (value: User | null) => void;
 	checkUserSession: () => Promise<boolean> | void;
 	addStock: (symbol: string) => void;
+	removeStock: (symbol: string) => void;
 }
 
 export const UserContext = createContext<ContextProps>({
@@ -21,6 +22,7 @@ export const UserContext = createContext<ContextProps>({
 	changeUser: () => {},
 	checkUserSession: () => {},
 	addStock: () => {},
+	removeStock: () => {},
 });
 
 export interface UserContextProviderProps {
@@ -64,6 +66,18 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 		}
 	};
 
+	const removeStock = async (symbol: string) => {
+		try {
+			const { data }: { data: User } = await axios.patch(
+				`http://localhost:5000/users/${user!.id}/remove-stock/${symbol}`
+			);
+			setUser(data);
+			console.log('setting');
+		} catch (err) {
+			alert(err.message);
+		}
+	};
+
 	const checkUserSession = async () => {
 		const token = localStorage.getItem('authToken');
 
@@ -85,7 +99,13 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 
 	return (
 		<UserContext.Provider
-			value={{ user, changeUser, checkUserSession, addStock }}
+			value={{
+				user,
+				changeUser,
+				checkUserSession,
+				addStock,
+				removeStock,
+			}}
 		>
 			{children}
 		</UserContext.Provider>

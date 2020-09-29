@@ -124,7 +124,14 @@ createConnection().then((connection) => {
 				) as string[];
 
 				const result = await userRepository.save(user!);
-				res.send(result);
+				const { id, firstName, lastName, email, stocks } = result;
+				res.send({
+					id,
+					firstName,
+					lastName,
+					email,
+					stocks,
+				});
 			} catch (err) {
 				res.status(500).send(err.message);
 			}
