@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	max-width: 30vw;
+	min-width: 28vw;
+	max-width: 28vw;
 	background: #1a1a1a;
 	border-radius: 10px;
+
+	background: red;
 
 	display: flex;
 	justify-content: center;

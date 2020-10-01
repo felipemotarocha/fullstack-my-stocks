@@ -1,16 +1,18 @@
 import React, { createContext, ReactNode, useState } from 'react';
 import axios from 'axios';
 
+import { NewsState } from '../../components/news-tab-panel/news-tab-panel.component';
+
 interface ContextProps {
 	editable: boolean;
 	toggleEditable: () => void;
-	fetchStockNews: (symbol: string) => void;
+	fetchStockNews: (symbol: string) => Promise<NewsState[]> | null;
 }
 
 export const StockContext = createContext<ContextProps>({
 	editable: false,
 	toggleEditable: () => {},
-	fetchStockNews: () => {},
+	fetchStockNews: () => null,
 });
 
 export interface StockContextProviderProps {
@@ -27,10 +29,16 @@ const StockContextProvider: React.FunctionComponent<StockContextProviderProps> =
 	};
 
 	const fetchStockNews = async (symbol: string) => {
-		const { data } = await axios.get(
-			`https://cloud.iexapis.com/stable/stock/${symbol}/batch?range=10d&token=sk_7077e804569242739bde723e7679aad5&types=news`
-		);
-		console.log(data);
+		try {
+			const {
+				data: { news },
+			} = await axios.get(
+				`https://cloud.iexapis.com/stable/stock/${symbol}/batch?range=10d&token=sk_7077e804569242739bde723e7679aad5&types=news`
+			);
+			return news;
+		} catch (err) {
+			alert('Error while fetching news.');
+		}
 	};
 
 	return (
