@@ -12,12 +12,15 @@ export interface StockSearchProps {
 const StockSearch: React.FunctionComponent<StockSearchProps> = ({
 	addStock,
 }) => {
-	const [symbol, setSymbol] = React.useState<string>('');
+	const [symbol, setSymbol] = React.useState('');
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
 		setSymbol(event.target.value);
 
-	const handleSubmit = () => addStock(symbol);
+	const handleSubmit = () => {
+		addStock(symbol);
+		setSymbol('');
+	};
 
 	return (
 		<Container>

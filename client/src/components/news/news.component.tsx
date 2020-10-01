@@ -1,12 +1,14 @@
 import * as React from 'react';
+import { default as NewsTab } from '../news-tab/news-tab.container';
+import { Container } from './news.styles';
 
 export interface NewsProps {}
 
 const News: React.FunctionComponent<NewsProps> = () => {
 	return (
-		<div style={{ width: '100%', color: 'black' }}>
-			<h1>news</h1>
-		</div>
+		<Container>
+			<NewsTab />
+		</Container>
 	);
 };
 

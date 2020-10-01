@@ -72,7 +72,6 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 				`http://localhost:5000/users/${user!.id}/remove-stock/${symbol}`
 			);
 			setUser(data);
-			console.log('setting');
 		} catch (err) {
 			alert(err.message);
 		}
