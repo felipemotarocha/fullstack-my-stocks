@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { format } from 'date-fns';
 
 import { Container, News, NewsImage } from './news-tab-panel-content.styles';
 
@@ -17,10 +18,13 @@ const NewsTabPanelContent: React.FunctionComponent<NewsTabPanelContentProps> = (
 
 	return (
 		<Container>
-			{news?.map(({ headline, image }) => (
+			{news?.map(({ headline, image, source, datetime }) => (
 				<News>
 					<NewsImage src={image} />
 					<h2>{headline}</h2>
+					<p>
+						{source} • {format(datetime, 'MM/dd/yyyy')}
+					</p>
 				</News>
 			))}
 		</Container>

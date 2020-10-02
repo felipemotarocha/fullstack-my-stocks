@@ -25,6 +25,10 @@ export const News = styled.div`
 		font-weight: 500;
 	}
 
+	p {
+		margin: -0.2rem 0;
+	}
+
 	&:nth-child(even) {
 		margin: 1.5rem 0;
 	}
