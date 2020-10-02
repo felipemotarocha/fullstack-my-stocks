@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Navbar from '../components/navbar/navbar.component';
+import ProtectedByAuth from '../components/protected-by-auth/protected-by-auth.component';
 import { UserContext } from '../contexts/user/user.context';
 import HomePage from '../pages/home/home.page';
 import { default as SignIn } from '../pages/sign-in/sign-in.container';
@@ -17,7 +18,11 @@ const App: React.FunctionComponent = () => {
 		<Container>
 			<Navbar />
 			<Switch>
-				<Route exact path='/' component={HomePage} />
+				<Route exact path='/'>
+					<ProtectedByAuth>
+						<HomePage />
+					</ProtectedByAuth>
+				</Route>
 				<Route exact path='/sign-in' component={SignIn} />
 			</Switch>
 		</Container>

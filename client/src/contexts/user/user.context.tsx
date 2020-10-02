@@ -87,7 +87,7 @@ const UserContextProvider: React.FunctionComponent<UserContextProviderProps> = (
 				},
 			});
 
-			setUser(data);
+			if (!user) setUser(data);
 			return true;
 		} catch (err) {
 			setUser(null);
